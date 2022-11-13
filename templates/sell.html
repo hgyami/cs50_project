@@ -8,10 +8,10 @@
 
 <form action="/sell" method="post">
     <div class="mb-3">
-        <select>
+        <select id="symbol" name="symbol">
             <option disabled selected>Stock Symbol</option>
             {% for portfolio in portfolio %}
-            <option id="symbol" name="symbol"> {{ portfolio }} </option>
+            <option> {{ portfolio.symbol }} </option>
             {% endfor %}
         </select>
         <br></br>

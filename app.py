@@ -49,7 +49,9 @@ def index():
 
     # Query transactions database to understand what the current portfolio looks like
     current_portfolio = db.execute(
-        "SELECT symbol, SUM(shares) AS shares FROM transactions WHERE user_id = ? AND shares > 0 GROUP BY symbol", id)
+        "SELECT symbol, SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING sum(shares) > 0", id)
+
+    portfolio_value = 0
 
     # Populate the portfolio table row by row
     for stock in current_portfolio:
@@ -59,6 +61,7 @@ def index():
         shares = int(stock["shares"])
         price = search["price"]
         holding_value = price*shares
+        portfolio_value = portfolio_value + holding_value
         db.execute("INSERT INTO portfolio (user_id, symbol, stock_name, shares, price, holding_value) VALUES (?,?,?,?,?,?)",
                    id, symbol, stock_name, shares, price, holding_value)
 
@@ -68,13 +71,6 @@ def index():
     # Query the user table to render the current cash balance
     money_left = db.execute("SELECT cash FROM users WHERE id = ?", id)
     money_left = money_left[0]["cash"]
-
-    # Query the portfolio table and loop over result to calculate the current total value of the portfolio
-    holding_value = db.execute("SELECT holding_value FROM portfolio WHERE id = ?", id)
-
-    portfolio_value = 0
-    for row in holding_value:
-        portfolio_value = portfolio_value + int(row["holding_value"])
 
     # Calculate the total wealth of the investor
     total_wealth = money_left + portfolio_value
@@ -233,6 +229,11 @@ def register():
         if not request.form.get("username"):
             return apology("must provide username")
 
+        # Ensure username not in existing database
+        usernames = db.execute("SELECT username FROM users WHERE username = ?", request.form.get("username"))
+        if usernames != []:
+            return apology("username already taken")
+
         # Ensure password was submitted
         elif not request.form.get("password"):
             return apology("must provide password")
@@ -272,7 +273,7 @@ def sell():
         if not symbol:
             return apology("must select valid stock symbol")
 
-        elif not sell_shares:
+        if not sell_shares:
             return apology("must enter number of shares")
 
         elif (sell_shares*-1) < 1:
