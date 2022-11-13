@@ -12,7 +12,7 @@
     <table>
         <thead>
             <tr>
-                <th></th>
+                <th>Stock Name</th>
                 <th>Stock Price</th>
                 <th>Stock Symbol</th>
             </tr>
@@ -20,7 +20,7 @@
         <tbody>
                 <tr>
                     <td> {{ stock.name }} </td>
-                    <td> {{ stock.price }} </td>
+                    <td> {{ stock.price | usd }} </td>
                     <td> {{ stock.symbol }} </td>
                 </tr>
         </tbody>
