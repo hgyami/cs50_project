@@ -238,7 +238,7 @@ def register():
             return apology("must provide password", 403)
 
         # Ensure passwords match
-        elif not request.form.get("check_password") == request.form.get("password"):
+        elif not request.form.get("confirmation") == request.form.get("password"):
             return apology("passwords do not match", 403)
 
         # Set up variables for DB insert
