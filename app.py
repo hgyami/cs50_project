@@ -93,7 +93,7 @@ def buy():
             return apology("must enter number of shares")
 
         # Check that a positive integer is inputted
-        elif request.form.get("shares") < 1:
+        elif str.isdigit(request.form.get("shares")) == False :
             return apology("must enter positive integer")
 
         # Initialize all relevant variables checking along the way that a user has inputted the right stock symbol
