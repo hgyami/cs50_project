@@ -96,10 +96,6 @@ def buy():
         elif request.form.get("shares") < 1:
             return apology("must enter positive integer")
 
-        # Check that an integer is inputted
-        elif request.form.get("shares") != int:
-            return apology("must enter positive integer")
-
         # Initialize all relevant variables checking along the way that a user has inputted the right stock symbol
         id = session["user_id"]
         symbol = request.form.get("symbol")
