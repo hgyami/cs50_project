@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<div class = "Section">
+    <h2>Portfolio</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Stock Name</th>
+                <th>Shares Held</th>
+                <th>Current Stock Price</th>
+                <th>Holding Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td> {{ stock.symbol }} </td>
+                <td> {{ stock.stock_name }} </td>
+                <td> {{ stock.shares }} </td>
+                <td> {{ stock.price | usd }} </td>
+                <td> {{ stock.holding_value | usd }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<br></br>
+<br></br>
+<br></br>
+<div class = "Section">
+    <table>
+        <thead>
+            <tr>
+                <th>Portfolio Value</th>
+                <th></th>
+                <th>Current Cash Balance</th>
+                <th></th>
+                <th>Total Wealth</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> {{ portfolio_value | usd }} </td>
+                <td> + </td>
+                <td> {{ money_left | usd }} </td>
+                <td> = </td>
+                <td> {{ total_wealth | usd }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
