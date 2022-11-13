@@ -164,18 +164,18 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return apology("invalid username and/or password")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -231,15 +231,15 @@ def register():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password")
 
         # Ensure passwords match
         elif not request.form.get("confirmation") == request.form.get("password"):
-            return apology("passwords do not match", 403)
+            return apology("passwords do not match")
 
         # Set up variables for DB insert
         username = request.form.get("username")
@@ -270,7 +270,7 @@ def sell():
             total_owned = int(stock["shares"])
 
         if not symbol:
-            return apology("must select valid stock symbol", 403)
+            return apology("must select valid stock symbol")
 
         elif not sell_shares:
             return apology("must enter number of shares")
@@ -320,11 +320,11 @@ def change_password():
 
         # Ensure password was submitted
         if not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password")
 
         # Ensure passwords match
         elif not request.form.get("check_password") == request.form.get("password"):
-            return apology("passwords do not match", 403)
+            return apology("passwords do not match")
 
         id = session["user_id"]
 
