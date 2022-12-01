@@ -1,0 +1,1 @@
+Help with uploading csv to system came from: https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/ andhttps://stackoverflow.com/questions/68541275/flask-upload-csv-file-and-insert-rows-into-mysql-database 

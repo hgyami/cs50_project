@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload
+{% endblock %}
+
+{% block main %}
+
+<div class="section">
+
+    <h2>Upload Monthly Transaction CSV Files</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Year</th>
+                <th>File Upload</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td> November </td>
+                    <td> 2022 </td>
+                    <td>
+                        <form action="/upload" enctype="multipart/form-data" method="post">
+                        <input type="file" id="november_2022" name="november_2022">
+                        <button type="submit"></button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td> October </td>
+                    <td> 2022 </td>
+                    <td>
+                        <form action="/upload">
+                        <input type="file" id="october_2022" name="october_2022">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td> September </td>
+                    <td> 2022 </td>
+                    <td>
+                        <form action="/upload">
+                        <input type="file" id="september_2022" name="september_2022">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <form action="/upload">
+                        <button type="submit">
+                        </form>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

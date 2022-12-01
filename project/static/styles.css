@@ -1,0 +1,42 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .black
+{
+    color: #000000;
+}
+
+table {
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    width: 75%;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(179, 208, 255, 0.3)
+}
+
+.section {
+    passing: 0.75 rem;
+}
+
+select {
+    padding: 0.75rem;
+}
+

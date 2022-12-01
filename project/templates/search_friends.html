@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+
+<div class="section">
+
+    <h2>Stock Quote</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Stock Name</th>
+                <th>Stock Price</th>
+                <th>Stock Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td> {{ stock.name }} </td>
+                    <td> {{ stock.price | usd }} </td>
+                    <td> {{ stock.symbol }} </td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
